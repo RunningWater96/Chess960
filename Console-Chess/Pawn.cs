@@ -16,7 +16,7 @@ namespace Console_Chess
 
         public override bool isValidPath(Point endPos)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

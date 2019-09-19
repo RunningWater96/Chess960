@@ -7,7 +7,7 @@ namespace Console_Chess
 {
     class Board
     {
-        List<Piece> pieces = new List<Piece>();
+        public List<Piece> pieces = new List<Piece>();
 
         public void CreatePieces()
         {
@@ -154,6 +154,20 @@ namespace Console_Chess
                     }
                     if(y == 8)
                     {
+                        switch (x)
+                        {
+                            case 0:
+                                Console.Write("          CONTROLS:");
+                                break;
+                            case 1:
+                                Console.Write("          move [piece X][piece Y] [to X][to Y] (example : move a2 a4)");
+                                break;
+                            case 2:
+                                Console.Write("          ff (quit the game and back to main menu)");
+                                break;
+                            default:
+                                break;
+                        }
                         Console.Write('\n');
                     }
                 }

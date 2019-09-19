@@ -17,6 +17,14 @@ namespace Console_Chess
 
         public abstract bool isValidPath(Point endPos);
 
+        public void moveTo(Point pos)
+        {
+            if (isValidPath(pos))
+            {
+                this.pos = pos;
+            }
+        }
+
         public PieceType getType()
         {
             return this.type;
