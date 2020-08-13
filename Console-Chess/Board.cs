@@ -10,7 +10,7 @@ namespace Console_Chess
         public List<Piece> pieces = new List<Piece>();
         public List<Piece> outPiecses = new List<Piece>();
 
-        public void CreatePieces()
+        public void CreatePieces(string gameVariant)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -18,31 +18,57 @@ namespace Console_Chess
                 pieces.Add(new Pawn(new Point(i + 1, 7), Piece.Color.BLACK));
             }
 
-            pieces.Add(new Rook(new Point(1, 1), Piece.Color.WHITE));
-            pieces.Add(new Rook(new Point(8, 1), Piece.Color.WHITE));
-            pieces.Add(new Rook(new Point(1, 8), Piece.Color.BLACK));
-            pieces.Add(new Rook(new Point(8, 8), Piece.Color.BLACK));
+            if (gameVariant.Equals("Chess"))
+            {
+                pieces.Add(new Rook(new Point(1, 1), Piece.Color.WHITE));
+                pieces.Add(new Rook(new Point(8, 1), Piece.Color.WHITE));
+                pieces.Add(new Rook(new Point(1, 8), Piece.Color.BLACK));
+                pieces.Add(new Rook(new Point(8, 8), Piece.Color.BLACK));
 
-            pieces.Add(new Knight(new Point(2, 1), Piece.Color.WHITE));
-            pieces.Add(new Knight(new Point(7, 1), Piece.Color.WHITE));
-            pieces.Add(new Knight(new Point(2, 8), Piece.Color.BLACK));
-            pieces.Add(new Knight(new Point(7, 8), Piece.Color.BLACK));
+                pieces.Add(new Knight(new Point(2, 1), Piece.Color.WHITE));
+                pieces.Add(new Knight(new Point(7, 1), Piece.Color.WHITE));
+                pieces.Add(new Knight(new Point(2, 8), Piece.Color.BLACK));
+                pieces.Add(new Knight(new Point(7, 8), Piece.Color.BLACK));
 
-            pieces.Add(new Bishop(new Point(3, 1), Piece.Color.WHITE));
-            pieces.Add(new Bishop(new Point(6, 1), Piece.Color.WHITE));
-            pieces.Add(new Bishop(new Point(3, 8), Piece.Color.BLACK));
-            pieces.Add(new Bishop(new Point(6, 8), Piece.Color.BLACK));
+                pieces.Add(new Bishop(new Point(3, 1), Piece.Color.WHITE));
+                pieces.Add(new Bishop(new Point(6, 1), Piece.Color.WHITE));
+                pieces.Add(new Bishop(new Point(3, 8), Piece.Color.BLACK));
+                pieces.Add(new Bishop(new Point(6, 8), Piece.Color.BLACK));
 
-            pieces.Add(new Queen(new Point(4, 1), Piece.Color.WHITE));
-            pieces.Add(new King(new Point(5, 1), Piece.Color.WHITE));
-            pieces.Add(new Queen(new Point(4, 8), Piece.Color.BLACK));
-            pieces.Add(new King(new Point(5, 8), Piece.Color.BLACK));
+                pieces.Add(new Queen(new Point(4, 1), Piece.Color.WHITE));
+                pieces.Add(new King(new Point(5, 1), Piece.Color.WHITE));
+                pieces.Add(new Queen(new Point(4, 8), Piece.Color.BLACK));
+                pieces.Add(new King(new Point(5, 8), Piece.Color.BLACK));
+            }
+            else
+            {
+                pieces.Add(new Rook(new Point(5, 1), Piece.Color.WHITE));
+                pieces.Add(new Rook(new Point(4, 1), Piece.Color.WHITE));
+                pieces.Add(new Rook(new Point(4, 8), Piece.Color.BLACK));
+                pieces.Add(new Rook(new Point(5, 8), Piece.Color.BLACK));
+
+                pieces.Add(new Knight(new Point(6, 1), Piece.Color.WHITE));
+                pieces.Add(new Knight(new Point(3, 1), Piece.Color.WHITE));
+                pieces.Add(new Knight(new Point(3, 8), Piece.Color.BLACK));
+                pieces.Add(new Knight(new Point(6, 8), Piece.Color.BLACK));
+
+                pieces.Add(new Bishop(new Point(8, 1), Piece.Color.WHITE));
+                pieces.Add(new Bishop(new Point(1, 1), Piece.Color.WHITE));
+                pieces.Add(new Bishop(new Point(1, 8), Piece.Color.BLACK));
+                pieces.Add(new Bishop(new Point(8, 8), Piece.Color.BLACK));
+
+                pieces.Add(new Queen(new Point(7, 1), Piece.Color.WHITE));
+                pieces.Add(new King(new Point(2, 1), Piece.Color.WHITE));
+                pieces.Add(new Queen(new Point(2, 8), Piece.Color.BLACK));
+                pieces.Add(new King(new Point(7, 8), Piece.Color.BLACK));
+            }
         }
 
         public void UpdateDraw()
         {
-            for (int x = 0; x < 9; x++){
-                for(int y = 0; y < 9; y++)
+            for (int x = 0; x < 9; x++)
+            {
+                for (int y = 0; y < 9; y++)
                 {
                     if (x == 0)
                     {
@@ -77,7 +103,7 @@ namespace Console_Chess
                                 break;
                         }
                     }
-                    else if(y == 0)
+                    else if (y == 0)
                     {
                         switch (x)
                         {
@@ -110,9 +136,9 @@ namespace Console_Chess
                     else
                     {
                         bool occupied = false;
-                        foreach(Piece piece in pieces)
+                        foreach (Piece piece in pieces)
                         {
-                            if(piece.pos.X == y && piece.pos.Y == x)
+                            if (piece.pos.X == y && piece.pos.Y == x)
                             {
                                 if (piece.color.Equals(Piece.Color.BLACK))
                                 {
@@ -148,12 +174,12 @@ namespace Console_Chess
                                 occupied = true;
                             }
                         }
-                        if(!occupied)
+                        if (!occupied)
                         {
                             Console.Out.Write(" |");
                         }
                     }
-                    if(y == 8)
+                    if (y == 8)
                     {
                         switch (x)
                         {

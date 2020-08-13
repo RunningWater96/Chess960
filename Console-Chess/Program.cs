@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace Console_Chess
 {
@@ -27,7 +29,7 @@ namespace Console_Chess
                     Console.Clear();
                     mainMenu();
                     break;
-                default:
+                default: 
                     runGame();
                     break;
             }
@@ -111,15 +113,20 @@ namespace Console_Chess
         {
             Console.Out.WriteLine("Console Chess MAIN MENU\n");
             Console.Out.WriteLine("Please select a menu option:");
-            Console.Out.WriteLine("1. Start new game. | 2. Exit.");
+            Console.Out.WriteLine("1. Chess. | 2. Chess960 | 3. Exit.");
             switch (Console.ReadLine())
             {
                 case "1":
                     game = new Board();
-                    game.CreatePieces();
+                    game.CreatePieces("Chess");
                     runGame();
                     break;
                 case "2":
+                    game = new Board();
+                    game.CreatePieces("960");
+                    runGame();
+                    break;
+                case "3":
                     Console.Clear();
                     Console.Out.WriteLine("Good bye...");
                     Environment.Exit(0);
